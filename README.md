@@ -1,6 +1,6 @@
 # react-native-route-navigator
 
-URI based react-native [Navigator](https://facebook.github.io/react-native/docs/navigator.html) with support for request query and body parameters.
+react-native [Navigator](https://facebook.github.io/react-native/docs/navigator.html) with URI driven navigation facilitating simple transfer of data between components using query, and body parameters.
 
 ## Quick start
 
@@ -13,14 +13,14 @@ npm install --save react-native-route-navigator
 Add it you your application:
 
 ```javascript
-var React = require('React'),
- { RouteNavigator, Router } = require('react-native-route-navigator');
+var React = require('React');
+var { RouteNavigator, Router } = require('react-native-route-navigator');
 
 class DemoApp extends React.Component {
 	render() {
 		return <RouteNavigator initialRouteStack={['/page1/my-id-string']]}
-                            router={this.router}
-                            app={this}/>
+                            			   router={this.router}
+				                              app={this}/>
 	}
 	
 	get router() {
@@ -108,4 +108,4 @@ this.props.nav.push({ name: 'page1'});
 
 ## Reading Navigation Query/Body
 
-You can receive URI perameters via `this.state.query` and the body object via `this.state.body`.
+You can receive URI parameters via `this.state.query` and the body object via `this.state.body`.
