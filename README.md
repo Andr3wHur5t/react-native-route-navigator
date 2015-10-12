@@ -1,6 +1,6 @@
 # react-native-route-navigator
 
-URI route navigator for react native.
+URI based react-native [Navigator](https://facebook.github.io/react-native/docs/navigator.html) with support for request query and body parameters.
 
 ## Quick start
 
@@ -32,18 +32,15 @@ class DemoApp extends React.Component {
 	}
 	
 	addRoutes(router) {
-    	// Specify Page Name, Page URI, Component, Options 
+		// Add our routes here
     	router.addRoute( 'page1', '/page1/:id', Page1, {
-      	defaultAnimation: Navigator.SceneConfigs.FadeAndroid,
-	      props: {
-        	didAuthenticate: this.didAuthenticate.bind(this)
-      		}
+      		defaultAnimation: Navigator.SceneConfigs.FadeAndroid,
     	});
-    	
     	router.addRoute( 'page2', '/page2/', Page2, {
-      	defaultAnimation: Navigator.SceneConfigs.FadeAndroid,
-	      props: {
-        	didAuthenticate: this.didAuthenticate.bind(this)
+      		defaultAnimation: Navigator.SceneConfigs.FadeAndroid,
+	      	props: {
+	      		name: 'joe',
+        		didPressButton: () => alert('Action from my app!')
       		}
     	});
     }

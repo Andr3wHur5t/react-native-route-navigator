@@ -1,6 +1,6 @@
 {
   "name": "react-native-route-navigator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "URI route navigator for react native.",
   "main": "index.js",
   "scripts": {
