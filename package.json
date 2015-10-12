@@ -27,7 +27,7 @@
     "navigator",
     "URI",
     "route",
-    "express",
+    "express"
   ],
   "peerDependencies": {
     "react-native": ">=0.5"
