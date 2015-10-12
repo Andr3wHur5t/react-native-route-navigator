@@ -1,0 +1,22 @@
+{
+  "name": "react-native-route-navigator",
+  "version": "1.0.0",
+  "description": "URI route navigator for react native.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Andr3wHur5t/react-native-route-navigator.git"
+  },
+  "author": "Andrew Hurst",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Andr3wHur5t/react-native-route-navigator/issues"
+  },
+  "homepage": "https://github.com/Andr3wHur5t/react-native-route-navigator#readme",
+  "dependencies": {
+    "route-parser": "0.0.4"
+  }
+}
