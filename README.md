@@ -12,7 +12,7 @@ npm install --save react-native-route-navigator
 
 Add it you your application:
 
-```
+```javascript
 var React = require('React'),
  { RouteNavigator, Router } = require('react-native-route-navigator');
 
@@ -85,7 +85,7 @@ Nav Object Components:
 
 Example calls:
 
-```
+```javascript
 // Go back to previous controller in route stack
 this.props.nav.pop();
 
