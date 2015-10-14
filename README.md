@@ -2,6 +2,8 @@
 
 react-native [Navigator](https://facebook.github.io/react-native/docs/navigator.html) with URI driven navigation facilitating simple transfer of data between components using query, and body parameters.
 
+[![NPM](https://nodei.co/npm/react-native-route-navigator.png?downloads=true&stars=true)](https://nodei.co/npm/react-native-route-navigator/)
+
 ## Quick start
 
 Install the module:
@@ -33,10 +35,10 @@ class DemoApp extends React.Component {
 	
 	addRoutes(router) {
 		// Add our routes here
-    	router.addRoute( 'page1', '/page1/:id', Page1, {
+    	router.addRoute( 'page1', '/page1/:id', Page1Component, {
       		defaultAnimation: Navigator.SceneConfigs.FadeAndroid,
     	});
-    	router.addRoute( 'page2', '/page2/', Page2, {
+    	router.addRoute( 'page2', '/page2/', Page2Component, {
       		defaultAnimation: Navigator.SceneConfigs.FadeAndroid,
 	      	props: {
 	      		name: 'joe',
@@ -44,6 +46,29 @@ class DemoApp extends React.Component {
       		}
     	});
     }
+}
+
+class Page1Component extends React.Component {
+	render() {
+		return <View>
+			<Text> Page 1! </Text>
+			<Text> Called With ID: {this.state.query.id} </Text>
+		</View>
+	}
+}
+
+class Page2Component extends React.Component {
+	render() {
+		return <View>
+			<Text> Page 2! </Text>
+			<Text> Hello {this.props.name} </Text>
+			<TouchableHighlite onPress={this.goBack.bind(this);}>
+		</View>
+	}
+	
+	goBack() {
+		this.props.nav.pop();	
+	}
 }
 
 React.AppRegistry.registerComponent('DemoApp',  () => DemoApp);
@@ -108,4 +133,4 @@ this.props.nav.push({ name: 'page1'});
 
 ## Reading Navigation Query/Body
 
-You can receive URI parameters via `this.state.query` and the body object via `this.state.body`.
+You can receive URI parameters via `this.state.query` and the body object via `this.state.body` in the constructed component.
