@@ -15,63 +15,113 @@ npm install --save react-native-route-navigator
 Add it you your application:
 
 ```javascript
-var React = require('React');
+var React = require('react-native');
+var {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+  TouchableHighlight,
+  Navigator
+} = React;
 var { RouteNavigator, Router } = require('react-native-route-navigator');
 
 class DemoApp extends React.Component {
-	render() {
-		return <RouteNavigator initialRouteStack={['/page1/my-id-string']]}
-                            			   router={this.router}
-				                              app={this}/>
-	}
-	
-	get router() {
-		if ( !this._router ) {
-	    	this._router = new Router();
-     		this.addRoutes(this._router);
-    	}
-	    return this._router;
-	}
-	
-	addRoutes(router) {
-		// Add our routes here
-    	router.addRoute( 'page1', '/page1/:id', Page1Component, {
-      		defaultAnimation: Navigator.SceneConfigs.FadeAndroid,
-    	});
-    	router.addRoute( 'page2', '/page2/', Page2Component, {
-      		defaultAnimation: Navigator.SceneConfigs.FadeAndroid,
-	      	props: {
-	      		name: 'joe',
-        		didPressButton: () => alert('Action from my app!')
-      		}
-    	});
+  render() {
+    return (
+      <RouteNavigator style={styles.container}
+          initialRouteStack={['/page1/my-id-string']}
+                     router={this.router}
+                        app={this}/>
+    );
+  }
+
+  get router() {
+    if ( !this._router ) {
+      this._router = new Router();
+      this.addRoutes(this._router);
     }
+    return this._router;
+  }
+
+  addRoutes(router) {
+    // Add our routes here
+    router.addRoute( 'page1', '/page1/:id', Page1Component, {
+      defaultAnimation: Navigator.SceneConfigs.FadeAndroid,
+    });
+
+    router.addRoute( 'page2', '/page2/', Page2Component, {
+      defaultAnimation: Navigator.SceneConfigs.FloatFromRight,
+      props: {
+        name: 'joe',
+        didPressButton: () => alert('Action from my app!')
+      }
+    });
+  }
 }
 
 class Page1Component extends React.Component {
-	render() {
-		return <View>
-			<Text> Page 1! </Text>
-			<Text> Called With ID: {this.state.query.id} </Text>
-		</View>
-	}
+    render() {
+        return (
+          <View style={styles.container}>
+            <Text style={styles.title}> Page 1! </Text>
+            <Text> Called With ID: {this.query.id} </Text>
+            <TouchableHighlight style={styles.button}
+                              onPress={this.goToPage2.bind(this)}>
+              <Text>Go To Page 2!</Text>
+            </TouchableHighlight>
+          </View>
+        );
+    }
+
+    goToPage2() {
+      this.props.nav.push('/page2/')
+    }
+
+    get query() {
+      return (this.state || {}).query || {};
+    }
 }
 
 class Page2Component extends React.Component {
-	render() {
-		return <View>
-			<Text> Page 2! </Text>
-			<Text> Hello {this.props.name} </Text>
-			<TouchableHighlite onPress={this.goBack.bind(this);}>
-		</View>
-	}
-	
-	goBack() {
-		this.props.nav.pop();	
-	}
+    render() {
+        return (
+          <View style={styles.container}>
+            <Text style={styles.title}> Page 2! </Text>
+            <Text> Hello {this.props.name} </Text>
+            <TouchableHighlight style={styles.button}
+                              onPress={this.goBack.bind(this)}>
+              <Text>Go Back!</Text>
+            </TouchableHighlight>
+          </View>
+        );
+    }
+
+    goBack() {
+        this.props.nav.pop();   
+    }
 }
 
-React.AppRegistry.registerComponent('DemoApp',  () => DemoApp);
+var styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  button: {
+    marginTop: 10,
+    backgroundColor: 'green',
+    padding: 15
+  },
+  title: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+});
+
+AppRegistry.registerComponent('DemoApp', () => DemoApp);
 ```
 
 ## RouteNavigator
