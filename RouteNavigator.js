@@ -32,6 +32,7 @@ class RouteNavigator extends React.Component {
             return this.getPage(
               route,
               nav,
+              raw,
               ref => {
                 if ( !ref ) return;
                 ref.props = { ...(ref.props || {}), ...(route.props || {}) };
@@ -76,7 +77,7 @@ class RouteNavigator extends React.Component {
     return this._pages
   }
 
-  getPage(route, nav, refCallback) {
+  getPage(route, nav, raw, refCallback) {
     var { name, props, component } = route;
 
     // Construct if needed
@@ -94,7 +95,8 @@ class RouteNavigator extends React.Component {
         app: this.props.app,
         nav,
         ref: (c) => { page.ref = c; (refCallback || (()=>{}))(c); },
-        ...(props)
+        ...(props),
+        ...(raw.props || {}),
       };
 
       // Create element
