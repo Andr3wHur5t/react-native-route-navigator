@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/Andr3wHur5t/react-native-route-navigator#readme",
   "dependencies": {
-    "route-parser": "0.0.4"
+    "route-parser": "0.0.5"
   },
   "keywords": [
     "react-component",
